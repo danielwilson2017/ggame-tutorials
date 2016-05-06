@@ -17,11 +17,18 @@ class SpaceShip(Sprite):
 
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
-        self.vx = 1
-        self.vy = 1
-        self.vr = 0.01
-        self.thrust = 0
-        self.thrustframe = 1
+        if position <= (250,0):
+            self.vx = 1
+            self.vy = 1
+            self.vr = 0.01
+            self.thrust = 0
+            self.thrustframe = 1
+        elif position >= (251,0):
+            self.vx = -1
+            self.vy = 1
+            self.vr = 0.01
+            self.thrust = 0
+            self.thrustframe = 1
         SpaceGame.listenKeyEvent("keydown", "space", self.thrustOn)
         SpaceGame.listenKeyEvent("keyup", "space", self.thrustOff)
         self.fxcenter = self.fycenter = 0.5
@@ -56,9 +63,8 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        SpaceShip((100,100))
-        SpaceShip((150,150))
-        SpaceShip((200,50))
+        SpaceShip((250,0))
+        
 
     def step(self):
         for ship in self.getSpritesbyClass(SpaceShip):
