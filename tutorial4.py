@@ -18,14 +18,14 @@ class SpaceShip(Sprite):
     def __init__(self, position):
         super().__init__(SpaceShip.asset, position)
         if position <= (250,0):
-            self.vx = 1
-            self.vy = 1
+            self.vx = .5
+            self.vy = .5
             self.vr = 0.01
             self.thrust = 0
             self.thrustframe = 1
         elif position >= (251,0):
-            self.vx = -1
-            self.vy = 1
+            self.vx = -.5
+            self.vy = .5
             self.vr = 0.01
             self.thrust = 0
             self.thrustframe = 1
@@ -63,7 +63,7 @@ class SpaceGame(App):
         noline = LineStyle(0, black)
         bg_asset = RectangleAsset(width, height, noline, black)
         bg = Sprite(bg_asset, (0,0))
-        SpaceShip((250,0))
+        SpaceShip((0,0))
         
 
     def step(self):
