@@ -3,6 +3,7 @@ tutorial4.py
 by E. Dennison
 """
 from ggame import App, RectangleAsset, ImageAsset, Sprite, LineStyle, Color, Frame
+import math
 
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 480
@@ -23,6 +24,7 @@ class SpaceShip(Sprite):
             self.vr = 0.01
             self.thrust = 0
             self.thrustframe = 1
+            self.t=0
         elif position >= (251,0):
             self.vx = -.5
             self.vy = .5
@@ -34,8 +36,9 @@ class SpaceShip(Sprite):
         self.fxcenter = self.fycenter = 0.5
 
     def step(self):
-        self.x += self.vx
-        self.y += self.vy
+        self.t += .1
+        self.x = math.cos(self.t)
+        self.y = math.sin(self.t)
         self.rotation += self.vr
         if self.thrust == 1:
             self.setImage(self.thrustframe)
@@ -51,6 +54,8 @@ class SpaceShip(Sprite):
     def thrustOff(self, event):
         self.thrust = 0
 
+
+        
 
 
 class SpaceGame(App):
