@@ -37,7 +37,7 @@ class SpaceShip(Sprite):
 
     def step(self):
         self.t += .1
-        self.x += 2*math.cos(self.t) + self.vx
+        self.x += self.vx
         self.y += 2*math.sin(self.t) + self.vy
         self.rotation += self.vr
         if self.thrust == 1:
